@@ -55,7 +55,7 @@ resource "aws_security_group" "ec2_sg" {
 }
 
 # EC2 Instance
-resource "aws_instance" "devops_ec2" {
+resource "aws_instance" "runner1" {
   ami                    = "ami-03f4878755434977f"
   instance_type          = "t3.micro"
   key_name               = var.key_name
@@ -69,4 +69,15 @@ resource "aws_instance" "devops_ec2" {
 # Data source to get default VPC
 data "aws_vpc" "default" {
   default = true
+}
+
+
+resource "tls_private_key" "my-key-pair" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "generated_key" {
+  key_name   = var.key_name
+  public_key = tls_private_key.my-key-pair.public_key_openssh
 }

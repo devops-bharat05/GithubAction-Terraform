@@ -13,6 +13,6 @@ variable "aws_secret_key" {
 }
 
 variable "key_name" {
-  default = "your-keypair-name"
+  default = "my-key-pair"
 }
 
