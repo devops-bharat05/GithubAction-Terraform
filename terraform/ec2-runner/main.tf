@@ -6,7 +6,7 @@ provider "aws" {
 
 # Security Group for EC2
 resource "aws_security_group" "ec2_sg" {
-  name        = "devops-ec2-sg"
+  name        = "ec2-runner-sg"
   description = "Allow SSH, HTTP, HTTPS, and app ports"
   vpc_id      = data.aws_vpc.default.id
 
